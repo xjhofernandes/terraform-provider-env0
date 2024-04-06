@@ -88,6 +88,7 @@ type DeploymentLog struct {
 	BlueprintId         string          `json:"blueprintId"`
 	BlueprintRepository string          `json:"blueprintRepository"`
 	BlueprintRevision   string          `json:"blueprintRevision"`
+	BlueprintName       string          `json:"blueprintName"`
 	Output              json.RawMessage `json:"output,omitempty"`
 	Error               json.RawMessage `json:"error,omitempty"`
 	Type                string          `json:"type"`
@@ -112,12 +113,14 @@ type Environment struct {
 	Status                      string        `json:"status"`
 	LifespanEndAt               string        `json:"lifespanEndAt" tfschema:"ttl"`
 	LatestDeploymentLogId       string        `json:"latestDeploymentLogId" tfschema:"deployment_id"`
-	LatestDeploymentLog         DeploymentLog `json:"latestDeploymentLog"`
+	LatestDeploymentLog         DeploymentLog `json:"latestDeploymentLog" tfschema:"latest_deployment_log"`
 	TerragruntWorkingDirectory  string        `json:"terragruntWorkingDirectory,omitempty"`
 	VcsCommandsAlias            string        `json:"vcsCommandsAlias"`
-	BlueprintId                 string        `json:"blueprintId" tfschema:"-"`
+	BlueprintId                 string        `json:"blueprintId" tfschema:"template_id"`
+	BlueprintName               string        `json:"blueprintName" tfschema:"template_name"`
+	BlueprintRevision           string        `json:"blueprintName" tfschema:"template_revision"`
 	IsRemoteBackend             *bool         `json:"isRemoteBackend" tfschema:"-"`
-	IsArchived                  *bool         `json:"isArchived" tfschema:"-"`
+	IsArchived                  *bool         `json:"isArchived" tfschema:"is_archived"`
 	IsRemoteApplyEnabled        bool          `json:"isRemoteApplyEnabled"`
 }
 
